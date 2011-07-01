@@ -1,5 +1,7 @@
 require 'test/unit'
-require 'main.rb'
+require 'filehandler.rb'
+require 'controller.rb'
+
 class Tests < Test::Unit::TestCase
   attr_accessor :file_name
 
@@ -34,4 +36,20 @@ class Tests < Test::Unit::TestCase
     assert(!content.include?("string2\n"))
   end
 
+  def test_controller_list_entries
+    controller=Controller.new(@file_name)
+    entries=controller.list_entries
+    assert(entries.include?("string\n"))
+    assert(entries.include?("string2\n"))
+    assert(entries.include?("string3\n"))
+  end
+
+  def test_controller_delete_entry
+    controller=Controller.new(@file_name)
+    entries=controller.list_entries
+    assert(entries.include?("string2\n"))
+    controller.delete_entry("string2")
+    entries=controller.list_entries
+    assert(!entries.include?("string2\n"))
+  end
 end
