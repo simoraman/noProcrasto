@@ -1,0 +1,7 @@
+require 'rake/testtask'
+task :default => [:unit_test]
+
+Rake::TestTask.new(:unit_test) do |t|
+    t.test_files = FileList['tests/*test*.rb']
+    t.verbose = true
+end

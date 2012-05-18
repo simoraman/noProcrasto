@@ -31,13 +31,5 @@ class Schedule
   attr_accessor :id, :entry, :start_time, :end_time
 end
 
-#tests
-gw=ScheduleGateway.new()
-scheds=gw.get_schedules
-for sch in scheds do
-  puts sch.id
-  puts sch.entry
-  puts sch.start_time
-  puts sch.end_time
-end
+
 
